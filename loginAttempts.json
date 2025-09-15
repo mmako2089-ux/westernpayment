@@ -1,0 +1,42 @@
+[
+  {
+    "email": "calvin@gmail.com",
+    "status": "12",
+    "timestamp": "2025-02-21T07:18:49.935Z"
+  },
+  {
+    "email": "calvin@gmail.com",
+    "password": "123",
+    "timestamp": "2025-02-21T07:42:20.404Z"
+  },
+  {
+    "email": "calvin@gmail.com",
+    "password": "123",
+    "otp": "689465",
+    "timestamp": "2025-02-21T07:47:52.442Z"
+  },
+  {
+    "otpCode": "123456",
+    "status": "success",
+    "timestamp": "2025-03-03T10:13:22.315Z"
+  },
+  {
+    "otpCode": "234556",
+    "status": "success",
+    "timestamp": "2025-03-03T10:20:28.173Z",
+    "otpVerifiedAt": "2025-03-03T10:37:24.933Z"
+  },
+  {
+    "email": "user@example.com",
+    "password": "mypassword",
+    "verificationCode": "583409",
+    "timestamp": "2025-03-03T10:29:53.064Z",
+    "otpVerifiedAt": "2025-03-03T10:30:05.425Z"
+  },
+  {
+    "email": "user@example.com",
+    "password": "mypassword",
+    "verificationCode": "339356",
+    "timestamp": "2025-03-03T10:34:13.317Z"
+  }
+]
